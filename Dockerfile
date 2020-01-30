@@ -17,4 +17,6 @@ RUN mv ./linux-amd64/helm /usr/local/bin/helm
 RUN helm repo add bitnami https://charts.bitnami.com/bitnami
 RUN helm repo update
 
+ENV TERM=xterm-256color
+
 WORKDIR /root/workdir
