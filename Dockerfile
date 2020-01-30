@@ -1,4 +1,6 @@
 FROM ubuntu:18.04
+WORKDIR /root
+
 RUN apt-get update && apt-get install -y apt-transport-https curl wget awscli gnupg gnupg1 gnupg2
 
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
@@ -14,3 +16,5 @@ RUN tar -zxvf helm-v3.0.3-linux-amd64.tar.gz
 RUN mv ./linux-amd64/helm /usr/local/bin/helm
 RUN helm repo add bitnami https://charts.bitnami.com/bitnami
 RUN helm repo update
+
+WORKDIR /root/workdir
