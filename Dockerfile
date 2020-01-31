@@ -15,6 +15,7 @@ RUN wget https://get.helm.sh/helm-v3.0.3-linux-amd64.tar.gz
 RUN tar -zxvf helm-v3.0.3-linux-amd64.tar.gz
 RUN mv ./linux-amd64/helm /usr/local/bin/helm
 RUN helm repo add bitnami https://charts.bitnami.com/bitnami
+RUN helm repo add stable https://kubernetes-charts.storage.googleapis.com
 RUN helm repo update
 
 ENV TERM=xterm-256color
