@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y kubectl=1.17.2-00
 
 RUN curl -Lo kops https://github.com/kubernetes/kops/releases/download/v1.15.1/kops-linux-amd64
 RUN chmod +x ./kops
-RUN ln -sf ${pwd}/kops /usr/local/bin
+RUN ln -sf $(pwd)/kops /usr/local/bin
 
 RUN wget https://get.helm.sh/helm-v3.0.3-linux-amd64.tar.gz
 RUN tar -zxvf helm-v3.0.3-linux-amd64.tar.gz
