@@ -1,0 +1,23 @@
+FROM docker:stable-dind
+WORKDIR /root
+
+RUN apk add  curl wget aws-cli gnupg
+
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+RUN chmod +x ./kubectl
+RUN mv ./kubectl /usr/local/bin/kubectl
+
+RUN curl -Lo kops https://github.com/kubernetes/kops/releases/download/v1.15.1/kops-linux-amd64
+RUN chmod +x ./kops
+RUN ln -sf $(pwd)/kops /usr/local/bin
+
+RUN wget https://get.helm.sh/helm-v3.0.3-linux-amd64.tar.gz
+RUN tar -zxvf helm-v3.0.3-linux-amd64.tar.gz
+RUN mv ./linux-amd64/helm /usr/local/bin/helm
+RUN helm repo add bitnami https://charts.bitnami.com/bitnami
+RUN helm repo add stable https://kubernetes-charts.storage.googleapis.com
+RUN helm repo update
+
+ENV TERM=xterm-256color
+
+WORKDIR /root/workdir
